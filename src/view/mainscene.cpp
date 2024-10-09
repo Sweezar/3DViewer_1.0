@@ -213,10 +213,9 @@ void MainScene::buildLines() {
     glBegin(GL_LINE_LOOP);
 
     for (unsigned int j = 0; j < m_data->polygons[i].vertexCount; j++) {
-      double x = m_data->matrix[m_data->polygons[i].vertexes[j] - 1].x;
-      double y = m_data->matrix[m_data->polygons[i].vertexes[j] - 1].y;
-      double z = m_data->matrix[m_data->polygons[i].vertexes[j] - 1].z;
-      glVertex3d(x, y, z);
+      glVertex3d(m_data->matrix[m_data->polygons[i].vertexes[j] - 1].x,
+                 m_data->matrix[m_data->polygons[i].vertexes[j] - 1].y,
+                 m_data->matrix[m_data->polygons[i].vertexes[j] - 1].z);
     }
 
     glEnd();
@@ -234,16 +233,14 @@ void MainScene::buildPoints() {
     glDisable(GL_POINT_SMOOTH);
   }
 
+  glBegin(GL_POINTS);
   for (unsigned int i = 0; i < m_data->polygonsCount; i++) {
-    glBegin(GL_POINTS);
-
     for (unsigned int j = 0; j < m_data->polygons[i].vertexCount; j++) {
-      double x = m_data->matrix[m_data->polygons[i].vertexes[j] - 1].x;
-      double y = m_data->matrix[m_data->polygons[i].vertexes[j] - 1].y;
-      double z = m_data->matrix[m_data->polygons[i].vertexes[j] - 1].z;
-      glVertex3d(x, y, z);
+      glVertex3d(m_data->matrix[m_data->polygons[i].vertexes[j] - 1].x,
+                 m_data->matrix[m_data->polygons[i].vertexes[j] - 1].y,
+                 m_data->matrix[m_data->polygons[i].vertexes[j] - 1].z);
     }
 
-    glEnd();
   }
+  glEnd();
 }
